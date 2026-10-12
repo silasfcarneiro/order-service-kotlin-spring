@@ -1,7 +1,7 @@
 spring:
-  application:
-    name: order-service-kotlin-spring
-  config:
-    import: optional:file:.env[.properties]
-  datasource:
-    password: ${DB_PASSWORD}
+    application:
+        name: order-service-kotlin-spring
+    config:
+        import: optional:file:.env[.properties]
+    datasource:
+        password: ${DB_PASSWORD}

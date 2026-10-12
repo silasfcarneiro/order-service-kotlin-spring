@@ -30,5 +30,7 @@ Serviço de pedidos em Kotlin + Spring Boot, construído do zero para estudo e p
   e prefira passos pequenos que eu consiga revisar.
 - Toda mudança de comportamento vem com teste.
 - Antes de dizer que terminou, rode os testes e confirme que eles executaram.
+- Eu escrevo o código de produção e os testes. Não implemente nada sem eu pedir
+    explicitamente: explique, aponte o caminho ou revise.
 
 Detalhes em `.claude/rules/`.
