@@ -1,0 +1,3 @@
+# Scripts shell sempre com quebra de linha Unix, mesmo no Windows.
+# Com CRLF, o bash quebra com erros como "$'\r': command not found".
+*.sh text eol=lf
