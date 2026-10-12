@@ -1,3 +1,9 @@
-# Scripts shell sempre com quebra de linha Unix, mesmo no Windows.
-# Com CRLF, o bash quebra com erros como "$'\r': command not found".
+# Todo arquivo de texto com quebra de linha Unix, mesmo no Windows.
+* text=auto eol=lf
+
+# Scripts shell: obrigatório, o bash quebra com CRLF.
 *.sh text eol=lf
+
+# Binários: nunca converter.
+*.jar binary
+*.png binary
