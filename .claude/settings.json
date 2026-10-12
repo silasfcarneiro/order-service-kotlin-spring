@@ -3,16 +3,26 @@
     "allow": [
       "Bash(./gradlew *)",
       "Bash(git status)",
+      "Bash(git status *)",
       "Bash(git diff *)",
       "Bash(git log *)"
     ],
     "ask": [
       "Bash(git push *)",
-      "Bash(gh pr create *)"
+      "Bash(gh pr create *)",
+      "Edit(./.claude/**)",
+      "Edit(./CLAUDE.md)",
+      "Edit(./project/build.gradle.kts)",
+      "Edit(./project/settings.gradle.kts)",
+      "Edit(./project/gradle/**)"
     ],
     "deny": [
-      "Read(./.env)",
-      "Read(./**/secrets/**)"
+      "Read(./**/.env)",
+      "Read(./**/.env.local)",
+      "Read(./**/secrets/**)",
+      "Read(~/.ssh/**)",
+      "Read(~/.aws/**)",
+      "Read(~/.config/gh/**)"
     ]
   },
   "hooks": {
@@ -44,25 +54,6 @@
           {
             "type": "command",
             "command": "bash \"${CLAUDE_PROJECT_DIR}/.claude/hooks/check-kotlin.sh\""
-          }
-        ]
-      },
-      {
-        "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bash \"${CLAUDE_PROJECT_DIR}/.claude/hooks/after-git.sh\""
-          }
-        ]
-      }
-    ],
-    "Notification": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bash \"${CLAUDE_PROJECT_DIR}/.claude/hooks/notify.sh\" \"O Claude precisa de você no order-service\""
           }
         ]
       }
