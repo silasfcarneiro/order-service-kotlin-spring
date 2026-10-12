@@ -4,7 +4,6 @@ import com.silas.order_service.inventory.domain.StockItem
 import com.silas.order_service.inventory.domain.exception.InsufficientStockException
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import kotlin.test.assertFails
 import kotlin.test.assertFailsWith
 
 class StockItemTest {

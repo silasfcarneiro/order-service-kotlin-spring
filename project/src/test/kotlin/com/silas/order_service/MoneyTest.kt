@@ -2,7 +2,6 @@ package com.silas.order_service
 
 import com.silas.order_service.shared.domain.Money
 import com.silas.order_service.shared.domain.exceptions.InvalidMoneyException
-import org.springframework.boot.test.context.SpringBootTest
 import java.math.BigDecimal
 import kotlin.test.Test
 import kotlin.test.assertEquals
