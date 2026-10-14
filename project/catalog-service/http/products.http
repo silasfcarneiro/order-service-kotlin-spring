@@ -1,0 +1,55 @@
+@host = http://localhost:8081/v1/api/products
+
+### 1. Buscar produto existente → 200
+GET {{host}}/TV-50
+
+### 2. Buscar produto inexistente → 404
+GET {{host}}/NAO-EXISTE
+
+### 3. Listar todos → 200
+GET {{host}}
+
+### 4. Buscar alguns por sku → 200
+GET {{host}}?skus=TV-50,SOUNDBAR
+
+### 5. Criar produto → 201 + Location
+POST {{host}}
+Content-Type: application/json
+
+{
+    "sku": "FONE-BT",
+    "name": "Fone Bluetooth",
+    "price": "299.90"
+}
+
+### 6. Criar o mesmo sku de novo → 409
+POST {{host}}
+Content-Type: application/json
+
+{
+    "sku": "FONE-BT",
+    "name": "Fone Bluetooth",
+    "price": "299.90"
+}
+
+### 7. Criar com nome em branco → 400 com errors
+POST {{host}}
+Content-Type: application/json
+
+{
+    "sku": "X-1",
+    "name": "",
+    "price": "10.00"
+}
+
+### 8. Atualizar nome e preço → 200
+PUT {{host}}/FONE-BT
+Content-Type: application/json
+
+{
+    "name": "Fone Bluetooth Pro",
+    "price": "349.90"
+}
+
+### 9. Desativar → 200
+PATCH {{host}}/FONE-BT/deactivate
