@@ -1,7 +1,7 @@
 package com.silas.order.domain
 
-import com.silas.common.domain.OrderId
 import com.silas.common.domain.Money
+import com.silas.common.domain.OrderId
 
 class Order(
     val orderId: OrderId,

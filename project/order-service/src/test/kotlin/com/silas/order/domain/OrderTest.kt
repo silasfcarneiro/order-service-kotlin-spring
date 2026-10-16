@@ -1,7 +1,7 @@
 package com.silas.order.domain
 
-import com.silas.common.domain.OrderId
 import com.silas.common.domain.Money
+import com.silas.common.domain.OrderId
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith

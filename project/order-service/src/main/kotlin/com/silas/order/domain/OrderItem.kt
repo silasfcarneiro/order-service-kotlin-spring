@@ -12,4 +12,8 @@ class OrderItem(
         require(quantity > 0) { "Item de pedido com quantidade inválida." }
         require(unitPrice >= Money.ZERO) { "Item de pedido com valor inválido." }
     }
+
+    fun subtotal(): Money {
+        return unitPrice * quantity
+    }
 }
