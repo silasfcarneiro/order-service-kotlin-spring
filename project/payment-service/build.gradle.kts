@@ -15,10 +15,10 @@ dependencyManagement {
 dependencies {
     implementation(project(":common"))
 
+    implementation(libs.spring.boot.starter.web)
     implementation(libs.spring.kafka)
     implementation(libs.jackson.module.kotlin)
-    implementation(libs.kotlin.reflect)
-    implementation(libs.spring.boot.starter.data.jpa)
+    implementation(libs.spring.doc.open.api)
 
     testImplementation(libs.spring.boot.starter.test)
     testImplementation(libs.mockito.kotlin)

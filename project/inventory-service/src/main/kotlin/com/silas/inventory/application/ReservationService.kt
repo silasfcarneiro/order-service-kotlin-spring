@@ -51,7 +51,7 @@ class ReservationService(
     ): List<Reservation> {
         val sameItems = existing.size == command.items.size &&
             command.items.all { item -> existing.any { it.matches(item.sku, item.quantity) } }
-        if (!sameItems) throw ReservationConflictException(command.orderId)
+        if (sameItems) throw ReservationConflictException(command.orderId)
         return existing
     }
 
