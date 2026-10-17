@@ -1,11 +1,10 @@
 package com.silas.catalog.domain
 
-import com.silas.catalog.domain.Product
 import com.silas.common.domain.Money
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import kotlin.test.assertNotEquals
 import kotlin.test.assertFailsWith
+import kotlin.test.assertNotEquals
 
 
 class ProductTest {

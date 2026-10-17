@@ -1,6 +1,5 @@
 package com.silas.common.domain
 
-import com.silas.common.domain.Money
 import com.silas.common.domain.exceptions.InvalidMoneyException
 import java.math.BigDecimal
 import kotlin.test.Test

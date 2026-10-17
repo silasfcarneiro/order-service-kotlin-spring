@@ -2,7 +2,7 @@ package com.silas.order.adapters.`in`.web.dto
 
 import com.silas.order.application.query.OrderView
 
-class OrderResponse (
+class OrderResponse(
     val orderId: String,
     val items: List<OrderItemResponse>,
     val total: String

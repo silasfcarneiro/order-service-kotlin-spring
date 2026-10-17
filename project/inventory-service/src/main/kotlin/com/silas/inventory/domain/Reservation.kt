@@ -1,32 +1,31 @@
 package com.silas.inventory.domain
 
-import com.silas.common.domain.OrderId
 import com.silas.inventory.domain.enums.ReservationStatus
 
 data class Reservation(
-    val orderId: OrderId,
+    val reservationId: ReservationId,
+    val orderId: String,
     val sku: String,
     val quantity: Int,
-    val status: ReservationStatus,
-)
-{
+    val status: ReservationStatus = ReservationStatus.RESERVED,
+) {
     init {
         require(quantity > 0) { "A quantidade reservada tem que ser maior que zero." }
     }
 
     /** Pagamento aprovado: o produto foi vendido. */
     fun confirm(): Reservation = when (status) {
-        ReservationStatus.RESERVED  -> copy(status = ReservationStatus.CONFIRMED)  // a única mudança permitida
+        ReservationStatus.RESERVED -> copy(status = ReservationStatus.CONFIRMED)  // a única mudança permitida
         ReservationStatus.CONFIRMED -> this                                        // repetição: nada muda
-        ReservationStatus.RELEASED  -> throw IllegalStateException(
+        ReservationStatus.RELEASED -> throw IllegalStateException(
             "Não é possível confirmar a reserva do pedido $orderId: ela já foi devolvida."
         )
     }
 
     /** Pagamento falhou: a reserva é desfeita (compensação da Saga). */
     fun release(): Reservation = when (status) {
-        ReservationStatus.RESERVED  -> copy(status = ReservationStatus.RELEASED)   // a única mudança permitida
-        ReservationStatus.RELEASED  -> this                                        // repetição: nada muda
+        ReservationStatus.RESERVED -> copy(status = ReservationStatus.RELEASED)   // a única mudança permitida
+        ReservationStatus.RELEASED -> this                                        // repetição: nada muda
         ReservationStatus.CONFIRMED -> throw IllegalStateException(
             "Não é possível devolver a reserva do pedido $orderId: o produto já foi vendido."
         )

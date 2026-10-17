@@ -1,28 +1,16 @@
 package com.silas.catalog.adapters.`in`.web
 
-import com.silas.catalog.adapters.`in`.web.dto.CreateProductRequest
-import com.silas.catalog.adapters.`in`.web.dto.ProductResponse
-import com.silas.catalog.adapters.`in`.web.dto.UpdateProductRequest
-import com.silas.catalog.adapters.`in`.web.dto.toDomain
-import com.silas.catalog.adapters.`in`.web.dto.toResponse
+import com.silas.catalog.adapters.`in`.web.dto.*
 import com.silas.catalog.application.CatalogService
 import com.silas.common.domain.Money
 import jakarta.validation.Valid
 import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PatchMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.PutMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RequestParam
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 import java.net.URI
 
 @RestController
 @RequestMapping("/v1/api/products")
-class ProductController (
+class ProductController(
     private val catalogService: CatalogService
 ) {
 

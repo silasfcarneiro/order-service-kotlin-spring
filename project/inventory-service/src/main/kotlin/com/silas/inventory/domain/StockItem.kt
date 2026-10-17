@@ -1,9 +1,9 @@
 package com.silas.inventory.domain
 
-import com.silas.inventory.domain.exception.InsufficientStockException
 import com.silas.common.domain.ensure
+import com.silas.inventory.domain.exception.InsufficientStockException
 
-data class StockItem (
+data class StockItem(
     val sku: String,
     val available: Int,
     val reserved: Int,
@@ -30,5 +30,15 @@ data class StockItem (
         require(quantity > 0) { "A quantidade tem que ser maior que zero." }
         check(reserved >= quantity) { "Não é possível confirmar $quantity de $sku: só há $reserved reservados." }
         return copy(reserved = reserved - quantity)
+    }
+
+    fun canReserve(quantity: Int): Boolean {
+        require(quantity > 0) { "A quantidade tem que ser maior que zero." }
+        return available >= quantity
+    }
+
+    fun addStock(quantity: Int): StockItem {
+        require(quantity > 0) { "A quantidade tem que ser maior que zero." }
+        return copy(available = available + quantity)
     }
 }

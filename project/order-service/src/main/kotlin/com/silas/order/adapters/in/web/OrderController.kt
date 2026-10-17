@@ -1,20 +1,11 @@
 package com.silas.order.adapters.`in`.web
 
 import com.silas.common.domain.OrderId
-import com.silas.order.adapters.`in`.web.dto.CreateOrderRequest
-import com.silas.order.adapters.`in`.web.dto.CreateOrderResponse
-import com.silas.order.adapters.`in`.web.dto.OrderResponse
-import com.silas.order.adapters.`in`.web.dto.toCommand
-import com.silas.order.adapters.`in`.web.dto.toResponse
+import com.silas.order.adapters.`in`.web.dto.*
 import com.silas.order.application.OrderService
 import jakarta.validation.Valid
 import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 import java.net.URI
 
 

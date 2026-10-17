@@ -100,7 +100,7 @@ class ReservationTest {
     }
 
     @Test
-    fun `valida o matches com os valores iguais` () {
+    fun `valida o matches com os valores iguais`() {
         val reservation = Reservation(
             orderId = OrderId.new(),
             sku = "teste",
@@ -112,7 +112,7 @@ class ReservationTest {
     }
 
     @Test
-    fun `valida o matches com os valores diferentes` () {
+    fun `valida o matches com os valores diferentes`() {
         val reservation = Reservation(
             orderId = OrderId.new(),
             sku = "teste",

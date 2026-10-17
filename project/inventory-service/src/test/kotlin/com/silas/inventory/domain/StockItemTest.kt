@@ -1,6 +1,5 @@
 package com.silas.inventory.domain
 
-import com.silas.inventory.domain.exception.InsufficientStockException
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import kotlin.test.assertFailsWith
