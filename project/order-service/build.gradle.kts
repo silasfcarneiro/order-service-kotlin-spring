@@ -20,6 +20,9 @@ dependencies {
     implementation(libs.jackson.module.kotlin)
     implementation(libs.spring.doc.open.api)
 
+    implementation(libs.resilience4j.spring.boot)
+    implementation(libs.spring.boot.starter.aspectj)
+
     testImplementation(libs.spring.boot.starter.test)
     testImplementation(libs.mockito.kotlin)
 }

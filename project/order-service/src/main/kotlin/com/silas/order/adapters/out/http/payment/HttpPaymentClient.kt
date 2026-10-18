@@ -7,6 +7,7 @@ import com.silas.order.adapters.out.http.payment.dto.PaymentResult
 import com.silas.order.adapters.out.http.payment.dto.toPaymentResult
 import com.silas.order.application.port.PaymentClient
 import com.silas.order.domain.exception.PaymentUnavailableException
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker
 import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.http.MediaType
 import org.springframework.resilience.annotation.Retryable
@@ -20,7 +21,7 @@ class HttpPaymentClient(
     @Qualifier("paymentRestClient") private val restClient: RestClient
 ) : PaymentClient {
 
-    @Retryable(maxRetries = 2, delay = 200, multiplier = 2.0, includes = [PaymentUnavailableException::class])
+    @CircuitBreaker(name = "payment", fallbackMethod = "paymentUnavailable")
     override fun charge(orderId: String, amount: Money): PaymentResult {
         val response = try {
             restClient.post()
@@ -35,4 +36,9 @@ class HttpPaymentClient(
 
         return response?.toPaymentResult() ?: throw PaymentUnavailableException(null)
     }
+
+    // Chamado quando a chamada falha OU quando o circuito está aberto (nem tenta chamar).
+    // Tem que ter os mesmos parâmetros do charge + a exceção no final.
+    private fun paymentUnavailable(orderId: String, amount: Money, ex: Throwable): PaymentResult =
+        throw PaymentUnavailableException(ex)
 }

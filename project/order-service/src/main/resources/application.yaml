@@ -9,6 +9,17 @@ server:
         threads:
             max: 20
     port: 8082
+resilience4j:
+    circuitbreaker:
+        instances:
+            payment:
+                sliding-window-size: 10              # olha as últimas 10 chamadas
+                failure-rate-threshold: 50           # 50% de falha → abre
+                wait-duration-in-open-state: 10s     # fica aberto 10 s
+                permitted-number-of-calls-in-half-open-state: 3
+                record-exceptions:
+                    - com.silas.order.domain.exception.PaymentUnavailableException
+
 catalog:
     base-url: http://localhost:8081
 payment:
