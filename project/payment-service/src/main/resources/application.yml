@@ -1,5 +1,11 @@
 spring:
     application:
         name: payment-service
+    threads:
+        virtual:
+            enabled: true
 server:
+    tomcat:
+        threads:
+            max: 20
     port: 8084

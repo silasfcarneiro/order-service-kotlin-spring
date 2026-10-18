@@ -13,7 +13,7 @@ class InMemoryStockRepository: StockRepository {
     init {
         listOf(
             StockItem(sku = "TV-50", available = 1000, reserved = 0),
-            StockItem(sku = "CABO-HDMI", available = 1000, reserved = 0),
+            StockItem(sku = "CABO-HDMI", available = 1_000_000, reserved = 0),
             StockItem(sku = "SOUNDBAR", available = 1000, reserved = 0),
             StockItem(sku = "TV-32-OLD", available = 1000, reserved = 0),
         ).forEach { save(it) }

@@ -10,14 +10,19 @@ import com.silas.inventory.domain.exception.ReservationConflictException
 import com.silas.inventory.domain.exception.ReservationNotFoundException
 import com.silas.inventory.domain.exception.StockItemUnavailableException
 import org.springframework.stereotype.Service
+import java.util.concurrent.locks.ReentrantLock
+import kotlin.concurrent.withLock
 
 @Service
 class ReservationService(
     private val repository: ReservationRepository,
     private val stockRepository: StockRepository
 ) {
+    // Uma operação de estoque por vez: evita o "lost update" entre ler e salvar.
+    // ReentrantLock em vez de synchronized para não prender threads virtuais (pinning no Java 21).
+    private val lock = ReentrantLock()
 
-    fun create(command: ReservationCreateCommand): List<Reservation> {
+    fun create(command: ReservationCreateCommand): List<Reservation> = lock.withLock {
         val existing = repository.findByOrderId(command.orderId)
         if (existing.isNotEmpty()) return existingOrConflict(existing, command)
 
@@ -59,7 +64,7 @@ class ReservationService(
         orderId: String,
         changeReservation: (Reservation) -> Reservation,
         changeStock: (StockItem, Int) -> StockItem
-    ): List<Reservation> {
+    ): List<Reservation> = lock.withLock {
         val before = repository.findByOrderId(orderId)
         if (before.isEmpty()) throw ReservationNotFoundException(orderId)
 
