@@ -1,8 +1,8 @@
 package com.silas.inventory.application
 
 import com.silas.inventory.application.command.ReservationCreateCommand
-import com.silas.inventory.application.port.StockRepository
 import com.silas.inventory.application.port.ReservationRepository
+import com.silas.inventory.application.port.StockRepository
 import com.silas.inventory.domain.Reservation
 import com.silas.inventory.domain.ReservationId
 import com.silas.inventory.domain.StockItem
